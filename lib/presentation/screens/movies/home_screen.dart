@@ -6,10 +6,6 @@ class HomeScreen extends StatelessWidget {
 
   const HomeScreen({super.key});
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(Environment.theMovieDnKey),
-      ),
-    );
+    return Scaffold(body: Placeholder());
   }
 }
