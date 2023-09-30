@@ -3,6 +3,8 @@ import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:dio/dio.dart';
 
 import '../../domain/datasources/movies_datasource.dart';
+import '../mappers/movie_mapper.dart';
+import '../models/moviedb/movie_moviedb.dart';
 import '../models/moviedb/moviedb_response.dart';
 
 class MovidbDatasource extends MoviesDatasource {
@@ -16,8 +18,12 @@ class MovidbDatasource extends MoviesDatasource {
   @override
   Future<List<Movie>> getNowPlaying({int page = 1}) async {
     final response = await dio.get('/movie/now_playing');
-    final List<Movie> movies =
-        response.data.map((video) => MovieDbResponse.fromJson(video)).toList();
+    final moviedbResponse = MovieDbResponse.fromJson(response.data);
+    final moviesResults = moviedbResponse.results
+        .where((moviedb) => moviedb.posterPath != 'no-poster')
+        .map((m) => MovieMapper.movieDBToEntity(m))
+        .toList();
+    final List<Movie> movies = moviesResults;
 
     return movies;
   }
