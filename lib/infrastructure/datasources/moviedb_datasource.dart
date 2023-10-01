@@ -7,7 +7,7 @@ import '../mappers/movie_mapper.dart';
 import '../models/moviedb/movie_moviedb.dart';
 import '../models/moviedb/moviedb_response.dart';
 
-class MovidbDatasource extends MoviesDatasource {
+class MoviedbDatasource extends MoviesDatasource {
   final dio = Dio(BaseOptions(
       baseUrl: 'https://api.themovidb.org/3',
       queryParameters: {
