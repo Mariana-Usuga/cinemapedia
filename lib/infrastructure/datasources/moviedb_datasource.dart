@@ -55,7 +55,18 @@ class MoviedbDatasource extends MoviesDatasource {
 
   @override
   Future<Movie> getMovieById(String id) async {
-    final response = await dio.post('/movie/$id');
+    final d = Dio();
+
+    final response = await d.get(
+      'https://api.themoviedb.org/3/movie/$id',
+      queryParameters: {
+        'api_key': Environment.theMovieDnKey,
+        'language': 'es-MX'
+      },
+    );
+    //final response = await dio.get('movie/$id');
+
+    print('object$response');
     if (response.statusCode != 200)
       throw Exception('Movie with id: $id not found');
 
