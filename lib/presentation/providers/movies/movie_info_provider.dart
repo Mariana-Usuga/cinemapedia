@@ -4,8 +4,8 @@ import 'package:cinemapedia/domain/entities/movie.dart';
 
 final movieInfoProvider =
     StateNotifierProvider<MovieMapNotifier, Map<String, Movie>>((ref) {
-  final movieRepository = ref.watch(movieRepositoryProvider);
-  return MovieMapNotifier(getMovie: movieRepository.getMovieById);
+  final movieRepository = ref.watch(movieRepositoryProvider).getMovieById;
+  return MovieMapNotifier(getMovie: movieRepository);
 });
 
 /*
