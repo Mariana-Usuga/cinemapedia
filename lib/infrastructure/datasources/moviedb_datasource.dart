@@ -10,7 +10,7 @@ class MoviedbDatasource extends MoviesDatasource {
   final dio = Dio(BaseOptions(
       baseUrl: 'https://api.themoviedb.org/3',
       queryParameters: {
-        'api_key': Environment.theMovieDnKey,
+        'api_key': Environment.theMovieDbKey,
         'language': 'es-MX'
       }));
 
@@ -60,7 +60,7 @@ class MoviedbDatasource extends MoviesDatasource {
     final response = await d.get(
       'https://api.themoviedb.org/3/movie/$id',
       queryParameters: {
-        'api_key': Environment.theMovieDnKey,
+        'api_key': Environment.theMovieDbKey,
         'language': 'es-MX'
       },
     );
