@@ -69,6 +69,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   @override
   List<Widget>? buildActions(BuildContext context) {
+    print('el que elimina lo que la persona escribio o carga');
     return [
       StreamBuilder(
         initialData: false,
@@ -99,6 +100,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   @override
   Widget? buildLeading(BuildContext context) {
     //null: supongo que la persona no hizo nada
+    print('buildLeading, para salir de la busqueda');
     return IconButton(
         onPressed: () {
           clearStreams();
@@ -109,11 +111,13 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   @override
   Widget buildResults(BuildContext context) {
+    print('buildResults, se ejecuta al presionar enter');
     return buildResultsAndSuggestions();
   }
 
   @override // peticion cada vez que presiono una tecla
   Widget buildSuggestions(BuildContext context) {
+    print('buildSuggestions, se dispara cada vez que la persona escribe algo');
     _onQueryChanged(query);
     return buildResultsAndSuggestions();
   }
